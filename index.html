@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do List</title>
+    <script src="https://kit.fontawesome.com/5b3cf53887.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="title-header">
+            <div class="details">
+                <h1> List</h1>
+                <p id="compliment"></p>
+                <div id="progressBar">
+                    <div id="progress"></div>
+                </div>
+            </div>
+            <div class="counter">
+                 <p id="fraction"> 0/0</p>
+            </div>
+        </div>
+        <div class="form-wrapper">
+            <input type="text" id="taskInput" placeholder="Write task here" name=" ">
+            <button id="new" onclick = "addTask()">+</button>
+        </div>
+
+        <ul id="task-list">
+            <!-- <li>
+                <div class="task-details">
+                    <input type="checkbox" id="checked">
+                    ww
+                </div>
+               
+                <div class="icons">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <i class="fa-solid fa-trash-can"></i>
+                </div>
+            </li> -->
+        </ul>
+    </div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="script.js"></script> 
+</body>
+</html>
