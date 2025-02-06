@@ -3,15 +3,40 @@ const taskInput = document.getElementById("taskInput");
 const tasklist = document.getElementById("task-list");
 let editingTask = null; // Stores the task being edited
 
-function addTask() {
-    if (taskInput.value === "") {
+// to load tasks as the page loads
+document.addEventListener("DOMContentLoaded", loadTasks);
+
+// A function to save the tasks
+function saveTasks() {
+    const tasks = [];
+    document.querySelectorAll("#task-list li").forEach(task => {
+        tasks.push({
+            text: task.querySelector(".task-text").innerText,
+            done: task.querySelector("#checked").checked
+        });
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+
+// to load the tasks from the local storage
+function loadTasks() {
+    const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    storedTasks.forEach(task => addTask(task.text, task.done, false));
+    counter(); 
+}
+
+function addTask(text = taskInput.value, completed = false, save = true) {
+    if (text === "") {
         alert("No input");
+        // return;
     } else {
         if (editingTask) {
             // If editingTask exists, update its text instead of creating a new task
             editingTask.querySelector(".task-text").innerText = taskInput.value;
             editingTask = null; // Reset editing state
             taskInput.value = ""; // Clear input
+            saveTasks();
             return;
         }
 
@@ -21,7 +46,7 @@ function addTask() {
         taskDetails.classList.add("task-details");
         taskDetails.innerHTML = `
             <input type="checkbox" id="checked">
-            <span class="task-text">${taskInput.value}</span>
+            <span class="task-text">${text}</span>
         `;
 
         const icons = document.createElement("div");
@@ -40,6 +65,7 @@ function addTask() {
             newli.remove();
             console.log("Task deleted");
             counter();
+            saveTasks();
         });
 
         // Add event listener for edit button
@@ -49,13 +75,22 @@ function addTask() {
 
         taskDetails.querySelector("#checked").addEventListener("click",function (){
             const taskText = taskDetails.querySelector(".task-text");
-            taskText.classList.toggle("done");
-            // newli.classList.toggle("done");
+            taskText.classList.toggle("done",this.checked);
             counter();
+            saveTasks();
         });
+
+        const checkbox = taskDetails.querySelector("#checked");
+        if (completed) {
+            checkbox.checked = true;
+            newli.querySelector(".task-text").classList.add("done");
+        }
 
         // Calling the counter function
         counter();
+       if (save) {
+         saveTasks();
+       }
 
         // Clear input field
         taskInput.value = "";
