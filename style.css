@@ -4,14 +4,22 @@
     box-sizing: border-box;
 }
 :root{
-    --background: black;
+    --background: white;
     --text: black;
+    --primaryColor : purple;
+    --light : black;
+}
+.dark-mode{
+    --background: black;
+    --text: white;
+    --primaryColor : rgb(60, 9, 60);
+    --light : white;
 }
 html{
     overflow-x: hidden;
 }
 body{
-    background-color: white;
+    background-color: var(--background);
     font-family: "poppins";
     overflow-x: hidden;
 
@@ -25,6 +33,14 @@ body{
     max-width: 600px;
     padding: 20px;
 }
+
+.fa-lightbulb{
+    font-size: 80px;
+    color: var(--light);
+    margin-top: 0;
+    margin-bottom: 20px;
+
+}
 .title-header{
     padding: 30px;
     border-radius: 20px;
@@ -37,6 +53,7 @@ body{
 }
 .details{
     width: 100%;
+    color: var(--text);
 }
 #progressBar{
     width: 100%;
@@ -44,12 +61,12 @@ body{
     border-radius: 20px;
     margin-top: 20px;
     background-color: grey;
-    opacity: 50%;
+    opacity: 60%;
 }
 #progress{
     width: 0%;
     height: 10px;
-    background-color: blue;
+    background-color: rgb(90, 5, 249);
     border-radius: 20px;
     transition: all 0.3s ease;
 }
@@ -63,6 +80,7 @@ body{
     border-radius: 50%;
     font-size: 30px;
     font-weight: bold;
+    color: var(--text);
 }
 
 .form-wrapper{
@@ -79,6 +97,7 @@ body{
     border: 1px solid purple;
     border-radius: 10px;
     outline: none;
+    color: var(--text);
 }
 button{
     padding: 16px;
@@ -87,10 +106,10 @@ button{
     display:flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    background-color: black;
+    color: var(--background);
+    background-color: var(--text);
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid var(--background);
     outline: none;
     font-size: 20px;
     font-weight: 200;
@@ -110,7 +129,7 @@ li{
     align-items: flex-start;
     flex-direction: column;
     justify-content: space-between;
-    background-color: purple;
+    background-color: var(--primaryColor);
     padding: 16px;
     font-size: 22px;
     border-radius: 10px;
@@ -118,6 +137,8 @@ li{
     transition: transform 0.2s ease-in-out;
     word-break: break-word;
     overflow-wrap: break-word ;
+    color: var(--text);
+    font-weight: 100;
 }
 .task-details{
     display: flex;
@@ -141,6 +162,7 @@ li{
     overflow-wrap: break-word;
     white-space: normal;
     display: block;
+    font-weight: 100;
 }
 .icons {
     display: flex;
@@ -150,7 +172,7 @@ li{
 }
 .icons i{
     margin-right: 10px;
-    color: black;
+    color: var(--text);
     padding: 5px;
     /* border: 2px solid green; */
     cursor: pointer;

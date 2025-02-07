@@ -3,6 +3,20 @@ const taskInput = document.getElementById("taskInput");
 const tasklist = document.getElementById("task-list");
 let editingTask = null; // Stores the task being edited
 
+//theme control 
+let modeTrigger = localStorage.getItem("mode");
+
+if(modeTrigger == null){
+    //on Users first entry set mode to light mode
+    localStorage.setItem("mode","light-mode");
+} else if(modeTrigger == "light-mode"){
+    localStorage.setItem("mode","light-mode");
+    document.body.classList.toggle("light-mode");
+} else {
+    localStorage.setItem("mode","dark-mode");
+    document.body.classList.toggle("dark-mode");
+    
+}
 // to load tasks as the page loads
 document.addEventListener("DOMContentLoaded", loadTasks);
 
@@ -152,6 +166,28 @@ function inputTask() {
     addTask(taskInput.value, false, true);
 }
 
+function theme() {
+    // modeTrigger = localStorage.getItem("mode");
+    const theme = document.getElementsByClassName("fa-lightbulb");
+
+    if(modeTrigger == "light-mode"){
+        localStorage.setItem("mode","dark-mode");
+        modeTrigger = localStorage.getItem("mode");
+        //to toggle out the old theme
+        document.body.classList.toggle("light-mode");
+        //to toggle int the new theme
+        document.body.classList.toggle("dark-mode");
+
+    } else {
+        localStorage.setItem("mode","light-mode");
+        modeTrigger = localStorage.getItem("mode");
+        //to toggle out the old theme
+        document.body.classList.toggle("dark-mode");
+        //to toggle int the new theme
+        document.body.classList.toggle("light-mode");
+    }   
+
+}
 
 
 
