@@ -7,9 +7,13 @@
     --background: black;
     --text: black;
 }
+html{
+    overflow-x: hidden;
+}
 body{
     background-color: white;
     font-family: "poppins";
+    overflow-x: hidden;
 
 }
 .container {
@@ -19,6 +23,7 @@ body{
     justify-content: center;
     margin: 120px auto;
     max-width: 600px;
+    padding: 20px;
 }
 .title-header{
     padding: 30px;
@@ -91,7 +96,7 @@ button{
     font-weight: 200;
 }
 ul{
-    margin-top: 100px;
+    margin-top: 60px;
     display: flex;
     list-style: none;
     text-align: left;
@@ -100,26 +105,48 @@ ul{
 }
 li{
     display: flex;
+    /* flex-wrap: wrap; */
     width: 100%;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
     justify-content: space-between;
     background-color: purple;
     padding: 16px;
     font-size: 22px;
     border-radius: 10px;
     margin-bottom: 20px;
+    transition: transform 0.2s ease-in-out;
+    word-break: break-word;
+    overflow-wrap: break-word ;
 }
 .task-details{
     display: flex;
-    flex-direction: row;
+    flex: 1;
     gap: 10px;
     align-items: center;
+    /* align-items: flex-start; */
     justify-content: center;
+    min-width: 0;
     /* background-color: black; */
 }
 .task-details input{
     height: 20px;
     width: 20px;
+    flex-shrink: 0;
+    /* margin-right: 10px; */
+}
+.task-text {
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    display: block;
+}
+.icons {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+    align-self: flex-end;
 }
 .icons i{
     margin-right: 10px;
@@ -133,4 +160,16 @@ li{
 }
 span.done{
    text-decoration: line-through;
+}
+@media screen and (max-width: 414px) {
+    .title-header {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+
+    .icons {
+        margin-top: 5px;
+    }
 }

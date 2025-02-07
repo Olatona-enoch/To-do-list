@@ -26,7 +26,7 @@ function loadTasks() {
     counter(); 
 }
 
-function addTask(text = taskInput.value, completed = false, save = true) {
+function addTask(text, completed, save) {
     if (text === "") {
         alert("No input");
         // return;
@@ -116,7 +116,12 @@ function counter(){
     
 
     const progress = document.getElementById("progress")
-    const widthValue = (numerator / denominator) * 100;
+    let widthValue = 0;
+    // if denominator is 0 i.e no tasks made than it should not affect the width 
+    // of the progress bar
+    if (denominator !== 0) {
+        widthValue = (numerator / denominator) * 100;
+    }
     console.log(widthValue)
     progress.style.width = `${widthValue}%`;
 
@@ -144,7 +149,7 @@ function counter(){
 
 function inputTask() {
     console.log("Button Pressed");
-    addTask();
+    addTask(taskInput.value, false, true);
 }
 
 
